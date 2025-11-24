@@ -1,0 +1,3 @@
+.img-rotate {
+  transform: rotate(180deg); /* Esto girará la imagen 90 grados en el sentido de las agujas del reloj */
+}
