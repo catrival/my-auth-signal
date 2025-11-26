@@ -14,6 +14,9 @@ export interface UserAccount{
   /** The user's new password. */
   password: string;
 
+  /** The user's password to confirm. */
+  confirmPassword: string;
+
   /** The email address registered to the user. */
   readonly email: string;
 

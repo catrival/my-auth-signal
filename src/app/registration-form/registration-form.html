@@ -1,76 +1,116 @@
 <div class="max-w-4xl max-sm:max-w-lg mx-auto p-6 mt-6">
   <div class="text-center mb-12 sm:mb-16">
-    <a href="javascript:void(0)"
-      ><img src="https://cdn-icons-png.flaticon.com/512/4421/4421766.png" alt="logo" class="w-40 h-32 inline-block img-rotate" routerLink="/sign-in" />
+    <a href="javascript:void(0)"><img src="https://cdn-icons-png.flaticon.com/512/4421/4421766.png" alt="logo"
+        class="w-40 h-32 inline-block img-rotate" routerLink="/sign-in" />
     </a>
     <h4 class="text-slate-600 text-base mt-6">Sign up into your account</h4>
   </div>
 
-  <form>
+  <form (submit)="onSubmit($event)" novalidate>
     <div class="grid sm:grid-cols-2 gap-8">
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">First Name</label>
-        <input
-          name="name"
-          type="text"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">First Name <span
+            class="text-red-400">*</span></label>
+        <input id="firstName" type="text" [field]="userForm.firstName"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter name"
-        />
+          placeholder="Enter name" />
+        @if ( isFieldInvalid('firstName') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.firstName().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">Last Name</label>
-        <input
-          name="lname"
-          type="text"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">Last Name <span
+            class="text-red-400">*</span></label>
+        <input id="lname" type="text" [field]="userForm.lastName"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter last name"
-        />
+          placeholder="Enter last name" />
+        @if ( isFieldInvalid('lastName') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.lastName().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">Email Id</label>
-        <input
-          name="email"
-          type="text"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">Email
+          <span class="text-red-400">*</span>
+        </label>
+        <input id="email" type="text" [field]="userForm.email"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter email"
-        />
+          placeholder="Enter email" />
+        @if ( isFieldInvalid('email') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.email().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">Mobile No.</label>
-        <input
-          name="number"
-          type="number"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">Mobile
+          <span class="text-red-400">*</span>
+        </label>
+        <input id="number" type="number" [field]="userForm.mobile"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter mobile number"
-        />
+          placeholder="Enter mobile number" />
+        @if ( isFieldInvalid('mobile') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.mobile().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">Password</label>
-        <input
-          name="password"
-          type="password"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">Password
+          <span class="text-red-400">*</span>
+        </label>
+        <input id="password" type="password" [field]="userForm.password"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter password"
-        />
+          placeholder="Enter password" />
+        @if ( isFieldInvalid('password') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.password().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
       <div>
-        <label class="text-slate-900 text-sm font-medium mb-2 block">Confirm Password</label>
-        <input
-          name="cpassword"
-          type="password"
+        <label class="text-slate-900 text-sm font-medium mb-2 block">Confirm Password
+          <span class="text-red-400">*</span>
+        </label>
+        <input id="cpassword" type="password" [field]="userForm.confirmPassword"
           class="bg-slate-100 w-full text-slate-900 text-sm px-4 py-3 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-          placeholder="Enter confirm password"
-        />
+          placeholder="Enter confirm password" />
+        @if ( isFieldInvalid('confirmPassword') ) {
+        <p class="text-sm text-red-400 font-medium flex items-center gap-1">
+          <error-icon />
+          @for (error of userForm.confirmPassword().errors(); track $index) {
+          <span>{{ error.message }}</span>
+          }
+        </p>
+        }
       </div>
     </div>
 
     <div class="mt-12">
-      <button
-        type="button"
+      <button type="submit" [disabled]="userForm().invalid()"
         class="mx-auto block min-w-32 py-3 px-6 text-sm font-medium tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer"
-      >
+        [ngClass]="{'opacity-50': userForm().invalid()}">
         Sign up
       </button>
     </div>
   </form>
+
 </div>
