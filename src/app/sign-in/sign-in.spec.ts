@@ -9,9 +9,7 @@ describe('SignIn', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SignIn],
-      providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { queryParams: {} } } }, // Instancia mock de ActivatedRoute
-      ],
+      providers: [{ provide: ActivatedRoute, useValue: { snapshot: { queryParams: {} } } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SignIn);
